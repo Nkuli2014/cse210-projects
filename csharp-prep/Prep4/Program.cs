@@ -11,7 +11,7 @@ namespace NumberListAnalyzer
             List<int> numbers = new List<int>();
             int number;
 
-            Console.WriteLine("Enter a list of numbers, type 0 when finished.");
+            Console.WriteLine("Enter a list of numbers, type 0 when Finished.");
 
             do
             {

@@ -67,7 +67,7 @@ namespace GradeCalculator
                     }
                     else
                     {
-                        Console.WriteLine("Better luck next time! Keep working hard.");
+                        Console.WriteLine("Better luck next time! Keep Working Hard.");
                     }
                 }
             }

@@ -53,7 +53,7 @@ namespace NumberGuessingGame
                 }
             }
 
-            Console.WriteLine("Thanks for playing! Goodbye.");
+            Console.WriteLine("Thank you for playing! Goodbye.");
         }
     }
 }

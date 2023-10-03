@@ -29,7 +29,7 @@ namespace SimpleFunctionsProgram
             Console.Write("Please enter your favorite number: ");
             if (int.TryParse(Console.ReadLine(), out int number))
             {
-                return number;
+                 return number;
             }
             else
             {
