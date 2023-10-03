@@ -1,10 +1,4 @@
 using System;
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,9 +10,9 @@ namespace NumberListAnalyzer
         {
             List<int> numbers = new List<int>();
             int number;
-            
+
             Console.WriteLine("Enter a list of numbers, type 0 when finished.");
-            
+
             do
             {
                 Console.Write("Enter number: ");
@@ -34,7 +28,7 @@ namespace NumberListAnalyzer
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                 }
             } while (number != 0);
-            
+
             if (numbers.Count == 0)
             {
                 Console.WriteLine("No numbers entered.");

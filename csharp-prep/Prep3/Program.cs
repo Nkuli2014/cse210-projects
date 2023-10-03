@@ -1,11 +1,5 @@
 using System;
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        using System;
-
 namespace NumberGuessingGame
 {
     class Program
@@ -22,7 +16,7 @@ namespace NumberGuessingGame
                 int attempts = 0;
 
                 Console.WriteLine("Welcome to the Number Guessing Game!");
-                Console.WriteLine("I'm thinking of a number between 1 and 100.");
+                Console.WriteLine("Think of a number between 1 and 100.");
 
                 do
                 {
@@ -41,7 +35,7 @@ namespace NumberGuessingGame
                         }
                         else
                         {
-                            Console.WriteLine($"You guessed it! It took you {attempts} attempts.");
+                          Console.WriteLine($"You guessed it! It took you {attempts} attempts.");
                         }
                     }
                     else
@@ -61,7 +55,5 @@ namespace NumberGuessingGame
 
             Console.WriteLine("Thanks for playing! Goodbye.");
         }
-    }
-}
     }
 }

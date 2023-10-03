@@ -1,11 +1,5 @@
 using System;
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        using System;
-
 namespace SimpleFunctionsProgram
 {
     class Program
@@ -53,7 +47,5 @@ namespace SimpleFunctionsProgram
         {
             Console.WriteLine($"{userName}, the square of your number is {squaredNumber}");
         }
-    }
-}
     }
 }
