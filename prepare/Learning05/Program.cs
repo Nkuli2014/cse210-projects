@@ -49,9 +49,8 @@ class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // Override the base method if needed
-        base.RecordEvent();
-        // Additional logic for recording events specific to eternal goals
+        // Prevent marking eternal goals as completed
+        // Additional logic for recording events specific to eternal goals can be added if needed
     }
 }
 

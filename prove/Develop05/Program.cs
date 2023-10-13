@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 // Define a base class for goals
 class Goal
@@ -37,7 +36,7 @@ class SimpleGoal : Goal
     public override void RecordEvent()
     {
         base.RecordEvent();
-        // Award points for completing the simple goal
+        // Additional logic for recording events specific to simple goals
     }
 }
 
@@ -46,6 +45,12 @@ class EternalGoal : Goal
 {
     public EternalGoal(string name, int value) : base(name, value)
     {
+    }
+
+    public override void RecordEvent()
+    {
+        // Prevent marking eternal goals as completed
+        // Additional logic for recording events specific to eternal goals can be added if needed
     }
 }
 
@@ -67,7 +72,7 @@ class ChecklistGoal : Goal
         if (currentCount >= requiredCount)
         {
             base.RecordEvent();
-            // Award bonus points for completing the checklist goal
+            // Additional logic for recording events specific to checklist goals
         }
     }
 
@@ -82,8 +87,6 @@ class EternalQuestManager
 {
     private List<Goal> goals;
     private int score;
-
-    public List<Goal> Goals => goals; // Add this property
 
     public EternalQuestManager()
     {
@@ -128,94 +131,82 @@ class Program
 {
     static void Main(string[] args)
     {
-        EternalQuestManager questManager = new EternalQuestManager();
+        Console.WriteLine("Welcome to the Eternal Quest Manager!");
+
+        EternalQuestManager manager = new EternalQuestManager();
 
         while (true)
         {
-            Console.WriteLine("Eternal Quest Program");
+            Console.WriteLine("Select an option:");
             Console.WriteLine("1. Add Goal");
             Console.WriteLine("2. Record Event");
             Console.WriteLine("3. Display Goals");
-            Console.WriteLine("4. Show Score");
-            Console.WriteLine("5. Quit");
+            Console.WriteLine("4. Display Score");
+            Console.WriteLine("5. Exit");
 
             int choice;
             if (int.TryParse(Console.ReadLine(), out choice))
             {
-                if (choice == 1)
+                switch (choice)
                 {
-                    Console.Write("Enter the goal name: ");
-                    string goalName = Console.ReadLine();
-                    Console.Write("Enter the goal type (1 for Simple, 2 for Eternal, 3 for Checklist): ");
-                    int goalType = int.Parse(Console.ReadLine());
-                    Console.Write("Enter the goal value: ");
-                    int goalValue = int.Parse(Console.ReadLine());
+                    case 1:
+                        Console.Write("Enter the goal name: ");
+                        string goalName = Console.ReadLine();
 
-                    Goal goal;
-                    if (goalType == 1)
-                    {
-                        goal = new SimpleGoal(goalName, goalValue);
-                    }
-                    else if (goalType == 2)
-                    {
-                        goal = new EternalGoal(goalName, goalValue);
-                    }
-                    else if (goalType == 3)
-                    {
-                        Console.Write("Enter the required count for the checklist goal: ");
-                        int requiredCount = int.Parse(Console.ReadLine());
-                        goal = new ChecklistGoal(goalName, goalValue, requiredCount);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid goal type.");
-                        continue;
-                    }
+                        int goalValue = 0; // Initialize to a default value
+                        bool validInput = false;
 
-                    questManager.AddGoal(goal);
-                    Console.WriteLine("Goal added.");
-                }
-                else if (choice == 2)
-                {
-                    Console.WriteLine("Select a goal to record an event:");
-                    questManager.DisplayGoals();
-                    int goalIndex = int.Parse(Console.ReadLine()) - 1;
-                    questManager.RecordEvent(goalIndex);
-                    Console.WriteLine("Event recorded.");
-                }
-                else if (choice == 3)
-                {
-                    questManager.DisplayGoals();
-                }
-                else if (choice == 4)
-                {
-                    Console.WriteLine($"Score: {questManager.GetScore()}");
-                }
-                               else if (choice == 5)
-                {
-                    // Save goals and score to a file (serialization)
-                    using (StreamWriter writer = new StreamWriter("goals.txt"))
-                    {
-                        foreach (Goal goal in questManager.Goals)
+                        while (!validInput)
                         {
-                            writer.WriteLine($"{goal.Name},{goal.Value},{goal.Completed}");
-                        }
-                        writer.WriteLine($"Score,{questManager.GetScore()}");
-                    }
+                            Console.Write("Enter the goal value: ");
+                            string input = Console.ReadLine();
 
-                    Console.WriteLine("Thank you for using the Eternal Quest Program!");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid choice. Please select a valid option.");
+                            if (int.TryParse(input, out goalValue))
+                            {
+                                validInput = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please enter a valid number.");
+                            }
+                        }
+
+                        manager.AddGoal(new SimpleGoal(goalName, goalValue));
+                        break;
+
+                    case 2:
+                        Console.Write("Enter the goal index to record an event: ");
+                        if (int.TryParse(Console.ReadLine(), out int goalIndex))
+                        {
+                            manager.RecordEvent(goalIndex - 1); // Adjust index by 1 for user-friendly input
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        }
+                        break;
+
+                    case 3:
+                        manager.DisplayGoals();
+                        break;
+
+                    case 4:
+                        Console.WriteLine($"Score: {manager.GetScore()}");
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Exiting the Eternal Quest Manager. Goodbye!");
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a valid option.");
+                        break;
                 }
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine("Invalid input. Please enter a valid number.");
             }
         }
     }
 }
-
