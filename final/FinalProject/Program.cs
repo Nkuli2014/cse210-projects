@@ -99,7 +99,7 @@ public static class InventorySystem
         Inventory inventory = new Inventory();
 
         // Add products to the inventory.
-        Product product1 = new Product("Laptop", "High-performance laptop", 999.99m, "Electronics");
+        Product product1 = new Product("Laptop", "High-Performance laptop", 999.99m, "Electronics");
         Product product2 = new Product("T-shirt", "Cotton T-shirt", 19.99m, "Clothing");
 
         InventoryItem electronicsItem = new Electronics(product1);
